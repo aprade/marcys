@@ -7,3 +7,4 @@ edition = "2018"
 
 [dependencies]
 sys_metrics = "0.2"
+rocket = "0.4.10"
