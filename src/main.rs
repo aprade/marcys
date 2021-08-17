@@ -1,13 +1,14 @@
 #[macro_use] extern crate rocket;
 
+use rocket_contrib::json::Json;
+
+use crate::cpu::CPUInfo;
 mod cpu;
 
-use rocket::serde::{json::Json};
-
 #[get("/cpu")]
-fn route_cpu() -> Json<cpu::CPUInfo> {
-    let info = cpu::get_cpu_info();
-    Json(info);
+fn route_cpu() -> Json<CPUInfo> {
+    let info = Json(cpu::get_cpu_info)();
+    info
 }
 
 #[launch]
