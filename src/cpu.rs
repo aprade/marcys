@@ -1,7 +1,5 @@
-use serde::{Serialize};
-use rocket_contrib::json::Json;
+use rocket::serde::Serialize;
 use sys_metrics::cpu::*;
-
 
 #[derive(Serialize, Debug)]
 pub struct CPUInfo {
@@ -11,7 +9,7 @@ pub struct CPUInfo {
     pub load_average: LoadAvg,
 }
 
-pub fn get_cpu_info() -> Json<CPUInfo> {
+pub fn get_cpu_info() -> CPUInfo {
     let info = CPUInfo {
         frequency: get_cpufreq().unwrap(),
         logical_cores: get_logical_count().unwrap(),
@@ -20,6 +18,5 @@ pub fn get_cpu_info() -> Json<CPUInfo> {
     };
     println!("{:#?}", info);
 
-    let serilized_info= serde_json::to_string(&info).unwrap();
-    serilized_info
+    info
 }
