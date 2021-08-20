@@ -6,7 +6,7 @@ mod cpu;
 
 #[get("/cpu")]
 fn route_cpu() -> Json<cpu::CPUInfo> {
-    let info = cpu::get_cpu_info();
+    let info = cpu::CPUInfo::new();
     Json(info)
 }
 

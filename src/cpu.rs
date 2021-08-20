@@ -9,14 +9,13 @@ pub struct CPUInfo {
     pub load_average: LoadAvg,
 }
 
-pub fn get_cpu_info() -> CPUInfo {
-    let info = CPUInfo {
-        frequency: get_cpufreq().unwrap(),
-        logical_cores: get_logical_count().unwrap(),
-        physical_cores: get_physical_count().unwrap(),
-        load_average: get_loadavg().unwrap(),
-    };
-    println!("{:#?}", info);
-
-    info
+impl CPUInfo {
+    pub fn new() -> CPUInfo {
+        CPUInfo {
+            frequency: get_cpufreq().unwrap(),
+            logical_cores: get_logical_count().unwrap(),
+            physical_cores: get_physical_count().unwrap(),
+            load_average: get_loadavg().unwrap(),
+        }
+    }
 }
