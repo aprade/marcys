@@ -1,9 +1,12 @@
+mod machine;
+
 #[macro_use] extern crate rocket;
 
 use rocket::serde::json::Json;
-
-mod cpu;
-mod memory;
+use machine::{
+    cpu,
+    memory
+};
 
 #[get("/cpu")]
 fn route_cpu() -> Json<cpu::CPUInfo> {
