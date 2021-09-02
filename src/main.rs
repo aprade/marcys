@@ -20,7 +20,16 @@ fn route_memory() -> Json<memory::Memory> {
     Json(info)
 }
 
+#[get("/")]
+fn route_root() -> Json<&'static str> {
+    Json("{\"status\": \"Operating!\"}")
+}
+
 #[launch]
 fn rocket() -> _ {
-    rocket::build().mount("/", routes![route_cpu, route_memory])
+    rocket::build().mount("/", routes![
+        route_root,
+        route_cpu,
+        route_memory
+    ])
 }
